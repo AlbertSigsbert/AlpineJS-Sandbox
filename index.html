@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        [x-cloak] {
+            display: none;
+        }
+    </style>
+    <title>Alpine JS</title>
+</head>
+
+<body>
+    <div class="container mx-auto mt-6 max-w-sm">
+        <h1 class="text-2xl mb-4">Alpine JS Sandbox</h1>
+
+        <!-- x-data (Alpine Component) -->
+        <div x-data="{open: false, name: 'Albert', search:''}">
+            <!-- x-on & x-bind -->
+            <button x-on:click="open = !open" :class="open ? 'bg-green-700' : 'bg-gray-700'"
+                class="px-4 py-2 text-white rounded-xl">
+                Toggle
+            </button>
+            <!-- x-show -->
+            <div x-show="open" x-transition x-cloak>
+                <p class="bg-gray-300 p-4 rounded my-6 text-center">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam quos architecto veritatis eum aliquid
+                    vel! Odio laboriosam neque ipsa illo.
+                </p>
+            </div>
+            <!-- x-text -->
+            <div class="my-4">
+                <p>
+                    My name is <span x-text="name" class="font-semibold"></span>
+                </p>
+            </div>
+
+            <!-- x-effect -->
+            <div x-effect="console.log(open)"></div>
+
+            <!-- x-model -->
+            <input x-model="search" type="text" placeholder="Search here"
+                class="my-4 p-4 w-full border border-gray-600 rounded">
+            <div class="my-2">
+                <p>Searching for <span x-text="search" class="font-bold"></span></p>
+            </div>
+
+            <!-- x-if -->
+            <template x-if="open" class="my-4">
+                <p>Conditionally paragraph</p>
+            </template>
+        </div>
+
+        <!-- x-for -->
+        <div class="bg-gray-400 text-white text-center py-4 my-4">
+
+            <h3 class="text-2xl my-2">Colors</h3>
+            <ul class="" x-data="{ colors: [
+            { id: 1, label: 'Red' },
+            { id: 2, label: 'Orange' },
+            { id: 3, label: 'Yellow' },
+        ]}">
+                <template x-for="color in colors" :key="color.id">
+                    <li x-text="color.label"></li>
+                </template>
+            </ul>
+        </div>
+
+
+    </div>
+</body>
+
+</html>
